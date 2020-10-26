@@ -19,6 +19,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.ThirteenStones.NoActionBar.SplashScreenTheme">
+        <item name="android:background">@drawable/splash_background</item>
+    </style>
+
     <style name="Theme.ThirteenStones.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.ThirteenStones.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
