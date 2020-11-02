@@ -3,8 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mindtedtech.thirteen_stones.activities.MainActivity">
     <item
+        android:id="@+id/action_new_game"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/new_game"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/action_statistics"
+        android:icon="@drawable/ic_outline_list_24"
+        android:title="@string/view_statistics"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/action_reset_stats"
+        android:icon="@drawable/ic_outline_cancel_24"
+        android:title="@string/reset_statistics"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
         android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/about"
         app:showAsAction="never" />
 </menu>

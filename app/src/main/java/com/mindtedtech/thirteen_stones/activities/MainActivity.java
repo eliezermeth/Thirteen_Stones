@@ -1,10 +1,12 @@
 package com.mindtedtech.thirteen_stones.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mindtedtech.thirteen_stones.R;
+import com.mindtedtech.thirteen_stones.lib.DialogUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -48,10 +50,40 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_new_game:
+                startNextNewGame();
+                return true;
+            case R.id.action_statistics:
+                showStatistics();
+                return true;
+            case R.id.action_reset_stats:
+                // mGame.resetStatistics();
+                return true;
+            case R.id.action_settings:
+                showSettings();
+                return true;
+            case R.id.action_about:
+                showAbout();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startNextNewGame() {
+    }
+
+    private void showStatistics() {
+        Intent intent = new Intent(getApplicationContext(), StatisticsActivity.class);
+        startActivity(intent);
+    }
+
+    private void showSettings() {
+    }
+
+    private void showAbout() {
+        DialogUtils.showInfoDialog(this, "About 13 Stones",
+                "This is our second in-class app of the semester!");
     }
 }
