@@ -14,4 +14,26 @@
         <item name="android:textColor">@color/button_color_selector</item>
         <item name="android:onClick">pick123</item>
     </style>
+
+    <style name="TextViewStatistics">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+    </style>
+
+    <style name="TextViewStatistics.PrimaryTextColor">
+        <item name="android:textColor">@color/primaryTextColoredColor</item>
+    </style>
+
+    <style name="TextViewStatistics.PrimaryTextColor.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextViewStatistics.SecondaryTextColor">
+        <item name="android:textColor">@color/primaryTextColoredColor</item>
+    </style>
+
+    <style name="TextViewStatistics.SecondaryTextColor.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

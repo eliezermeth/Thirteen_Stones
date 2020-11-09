@@ -2,10 +2,13 @@ package com.mindtedtech.thirteen_stones.models;
 
 import com.google.gson.Gson;
 
+import java.util.Arrays;
+
 public class ThirteenStones
 {
-    private final static int sDEFAULT_PILE_START = 13;
+    private final static int sDEFAULT_PILE_START = 13, sPLAYER_COUNT = 2;
     private int mNumberOfGamesPlayed = 0;
+    private final int[] mArrayPlayerWinCount;
 
     public final static int sMIN_PICK = 1;
     public final static int sMAX_PICK = 3;
@@ -28,6 +31,7 @@ public class ThirteenStones
     {
         mPileStart = pileSize;
         mWinnerIsLastPlayerToPick = winnerIsLastPlayerToPick;
+        mArrayPlayerWinCount = new int[sPLAYER_COUNT];
         startGame ();
     }
 
@@ -42,10 +46,16 @@ public class ThirteenStones
     {
         if (!isGameOver ()) {
             tryToTakeTurnWith (amount);
+            updateGameWinStatisticsIfGameHasJustEnded();
         }
         else {
             throw new IllegalStateException ("May not take a turn while the game is over.");
         }
+    }
+
+    private void updateGameWinStatisticsIfGameHasJustEnded() {
+        if (isGameOver())
+            mArrayPlayerWinCount[getWinningPlayerNumber()-1]++;  // player 1 or 2 == element 0 or 1
     }
 
     private void tryToTakeTurnWith (int amount)
@@ -56,7 +66,7 @@ public class ThirteenStones
         else {
             throw new IllegalArgumentException
                     ("Pick Amount must be: " + sMIN_PICK + " - " + sMAX_PICK +
-                             " and up to number of remaining stones in the pile.");
+                            " and up to number of remaining stones in the pile.");
         }
     }
 
@@ -90,13 +100,33 @@ public class ThirteenStones
         return mWinnerIsLastPlayerToPick;
     }
 
+    public int getNumberOfWinsForPlayer (int playerNumber)
+    {
+        if (playerNumber < 1 || playerNumber > sPLAYER_COUNT)
+            throw new IllegalArgumentException("Player number must be between 1 and "
+                    + sPLAYER_COUNT + ".");
+        return mArrayPlayerWinCount[playerNumber-1];
+    }
+
+    public void resetStatistics ()
+    {
+        mNumberOfGamesPlayed= isGameOver() ? 0 : 1;
+        Arrays.fill(mArrayPlayerWinCount, 0);
+    }
+
     public void setWinnerIsLastPlayerToPick (boolean winnerIsLastPlayerToPick)
     {
         mWinnerIsLastPlayerToPick = winnerIsLastPlayerToPick;
     }
 
-    public int getWinningPlayerNumber ()
+    public int getWinningPlayerNumberIfGameOver()
     {
+        if (!isGameOver())
+            throw new IllegalStateException("No winner yet; the game is still ongoing.");
+        return getWinningPlayerNumber();
+    }
+
+    private int getWinningPlayerNumber() {
         return (mWinnerIsLastPlayerToPick == mFirstPlayerTurn) ? 1 : 2;
     }
 
@@ -154,4 +184,3 @@ public class ThirteenStones
         return getJSONFromGame(this);
     }
 }
-
