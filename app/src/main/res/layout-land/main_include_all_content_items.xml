@@ -12,6 +12,15 @@
         app:layout_constraintGuide_percent=".5" />
 
     <include
+        android:id="@+id/top_bar"
+        layout="@layout/main_include_instruction_bar"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guide"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
         android:id="@+id/card_image_view_stones"
         layout="@layout/main_include_card_image_stones"
         android:layout_width="0dp"
@@ -20,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guide"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         layout="@layout/main_include_card_buttons"
@@ -30,5 +39,5 @@
         app:layout_constraintBottom_toBottomOf="@id/card_image_view_stones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guide"
-        app:layout_constraintTop_toTopOf="@+id/card_image_view_stones" />
+        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
 </merge>

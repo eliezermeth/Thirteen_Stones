@@ -7,8 +7,6 @@
     android:layout_marginBottom="?actionBarSize"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include layout="@layout/main_include_instruction_bar" />
-
-    <include layout="@layout/main_include_card_buttons_and_image" />
+    <include layout="@layout/main_include_all_content_items" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
