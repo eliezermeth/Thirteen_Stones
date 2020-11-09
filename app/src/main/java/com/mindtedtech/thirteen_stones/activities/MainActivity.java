@@ -86,4 +86,8 @@ public class MainActivity extends AppCompatActivity {
         DialogUtils.showInfoDialog(this, "About 13 Stones",
                 "This is our second in-class app of the semester!");
     }
+
+    public void pick123(View view) {
+        // handle clicks on 1, 2, and 3
+    }
 }

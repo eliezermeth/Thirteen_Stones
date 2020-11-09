@@ -7,7 +7,7 @@
     android:id="@+id/top_bar"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    android:background="@color/design_default_color_primary_dark"
+    android:background="@color/primaryDarkColor"
     android:gravity="center"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
