@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MaterialCardWithBorder"
@@ -8,7 +9,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/double_activity_margin"
     android:alpha=".8"
-    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintBottom_toBottomOf="@+id/card_image_view_stones"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     tools:showIn="@layout/content_main">
@@ -29,6 +30,7 @@
         <Button
             style="@style/BorderlessButton13Stones"
             android:text="@string/three" />
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

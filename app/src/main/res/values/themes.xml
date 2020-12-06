@@ -25,6 +25,26 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.ThirteenStones.NoActionBar.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog.MinWidth">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+
+        <item name="colorAccent">@color/secondaryColor</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/secondaryDarkColor
+        </item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/secondaryDarkColor
+        </item>
+    </style>
+
     <style name="Theme.ThirteenStones.NoActionBar.SplashScreenTheme">
         <item name="android:background">@drawable/splash_background</item>
     </style>

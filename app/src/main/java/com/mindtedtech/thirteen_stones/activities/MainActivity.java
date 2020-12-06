@@ -1,12 +1,12 @@
 package com.mindtedtech.thirteen_stones.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mindtedtech.thirteen_stones.R;
-import com.mindtedtech.thirteen_stones.lib.DialogUtils;
 import com.mindtedtech.thirteen_stones.models.ThirteenStones;
 
 import androidx.annotation.NonNull;
@@ -25,7 +25,8 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-import static com.mindtedtech.thirteen_stones.lib.DialogUtils.showInfoDialog;
+import static androidx.preference.PreferenceManager.getDefaultSharedPreferences;
+import static com.mindtedtech.thirteen_stones.lib.Utils.showInfoDialog;
 import static com.mindtedtech.thirteen_stones.models.ThirteenStones.getGameFromJSON;
 import static com.mindtedtech.thirteen_stones.models.ThirteenStones.getJSONFromGame;
 
@@ -37,16 +38,65 @@ public class MainActivity extends AppCompatActivity {
 
     private int[] mImages;
 
+    private boolean mUseAutoSave;   // win on last pick is set in the model
+
+    private final String mKEY_GAME = "GAME";
+    private String mKEY_AUTO_SAVE;
+    private String mKEY_WIN_ON_LAST_PICK;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveOrDeleteGameInSharedPrefs();
+    }
+
+    private void saveOrDeleteGameInSharedPrefs() {
+        SharedPreferences defaultSharedPreferences = getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = defaultSharedPreferences.edit();
+
+        // Save current game or remove any prior game to/from default shared preferences
+        if (mUseAutoSave)
+            editor.putString(mKEY_GAME, mGame.getJSONFromCurrentGame());
+        else
+            editor.remove(mKEY_GAME);
+
+        editor.apply();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        restoreFromPreferences_SavedGameIfAutoSaveWasSetOn();
+        restoreOrSetFromPreferences_AllAppAndGameSettings();
+    }
+    private void restoreFromPreferences_SavedGameIfAutoSaveWasSetOn() {
+        SharedPreferences defaultSharedPreferences = getDefaultSharedPreferences(this);
+        if (defaultSharedPreferences.getBoolean(mKEY_AUTO_SAVE,true)) {
+            String gameString = defaultSharedPreferences.getString(mKEY_GAME, null);
+            if (gameString!=null) {
+                mGame = ThirteenStones.getGameFromJSON(gameString);
+                updateUI();
+            }
+        }
+    }
+
+    private void restoreOrSetFromPreferences_AllAppAndGameSettings() {
+        SharedPreferences sp = getDefaultSharedPreferences(this);
+        mUseAutoSave = sp.getBoolean(mKEY_AUTO_SAVE, true);
+        mGame.setWinnerIsLastPlayerToPick(sp.getBoolean(mKEY_WIN_ON_LAST_PICK, false));
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("GAME", getJSONFromGame(mGame));
+        outState.putString(mKEY_GAME, getJSONFromGame(mGame));
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mGame = getGameFromJSON(savedInstanceState.getString("GAME"));
+        mGame = getGameFromJSON(savedInstanceState.getString(mKEY_GAME));
         updateUI();
     }
 
@@ -58,7 +108,13 @@ public class MainActivity extends AppCompatActivity {
         setupViews();
         setupImagesIntArray();
         setupFAB();
+        setupFields();
         startFirstGame();
+    }
+
+    private void setupFields() {
+        mKEY_AUTO_SAVE = getString(R.string.auto_save_key);
+        mKEY_WIN_ON_LAST_PICK = getString(R.string.win_on_last_pick_key);
     }
 
     private void setupViews() {
@@ -206,20 +262,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void showSettings() {
         dismissSnackBarIfShown();
-        //Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-        //startActivityForResult(intent, 1);
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivityForResult(intent, 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1) {
-            applySettingsChanges();
+            restoreOrSetFromPreferences_AllAppAndGameSettings();
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    private void applySettingsChanges() {
-        // Not Yet Implemented
     }
 }

@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ThirteenStones">
         <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity
             android:name=".activities.StatisticsActivity"
             android:label="@string/title_activity_statistics"
-            android:theme="@style/Theme.ThirteenStones.NoActionBar" />
+            android:theme="@style/Theme.ThirteenStones.NoActionBar.Dialog" />
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/Theme.ThirteenStones.NoActionBar.SplashScreenTheme">

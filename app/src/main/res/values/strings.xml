@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Thirteen Stones</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_statistics">Statistics</string>
+    <string name="title_activity_settings">Settings</string>
+
     <string name="info_title">How to Play</string>
     <string name="banner_text">Please tap the number of stones to remove:</string>
     <string name="new_game">New Game</string>
@@ -15,8 +17,11 @@
     <string name="winner_is_player_number">The winner is Player #</string>
     <string name="games_played"><![CDATA[Games played: ]]></string>
     <string name="error_msg_could_not_update_image">Could not update stones image.</string>
+
+    <string name="action_settings">Settings</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="view_statistics">View Statistics</string>
+    <string name="reset_statistics">Reset Statistics</string>
 
     <!-- Preference Titles -->
     <string name="display_header">Display</string>
@@ -24,7 +29,7 @@
 
     <!-- Preferences -->
     <string name="night_mode_key">Night Mode</string>
-    <string name="night_mode_title">Dark/Night Mode</string>
+    <string name="night_mode_title">Night/Dark Mode</string>
     <string name="night_mode_off">Never use Night/Dark Mode</string>
     <string name="night_mode_on">Use Night/Dark Mode (unless disabled in OS Settings)</string>
 
@@ -38,12 +43,9 @@
     <string name="auto_save_on">On exit, the game in progress will be saved</string>
     <string name="auto_save_title">Auto-Save Game on Exit</string>
     <string name="fab">FAB</string>
-    <string name="view_statistics">View Statistics</string>
-    <string name="reset_statistics">Reset Statistics</string>
-    <string name="title_activity_statistics">Statistics</string>
 
     <!-- Strings used for Statistics Activity -->
-    <string name="player_number">Player Number</string>
-    <string name="games_won">Games Won</string>
-    <string name="percent_won">Percent Won</string>
+    <string name="player_number">Player\nNumber</string>
+    <string name="games_won">Games\nWon</string>
+    <string name="percent_won">Percent\nWon</string>
 </resources>
