@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -34,6 +34,7 @@
         style="@style/TextViewStatistics.SecondaryTextColor.Bold"
         android:layout_marginEnd="@dimen/default_activity_margin"
         android:layout_marginRight="@dimen/default_activity_margin"
+        android:gravity="center"
         android:text="@string/player_number"
         app:layout_constraintEnd_toStartOf="@+id/tv_label_header_wins"
         app:layout_constraintTop_toTopOf="@+id/tv_label_header_wins" />
@@ -42,6 +43,7 @@
         android:id="@+id/tv_label_header_wins"
         style="@style/TextViewStatistics.SecondaryTextColor.Bold"
         android:layout_marginTop="@dimen/double_activity_margin"
+        android:gravity="center"
         android:text="@string/games_won"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +54,7 @@
         style="@style/TextViewStatistics.SecondaryTextColor.Bold"
         android:layout_marginStart="@dimen/default_activity_margin"
         android:layout_marginLeft="@dimen/default_activity_margin"
+        android:gravity="center"
         android:text="@string/percent_won"
         app:layout_constraintStart_toEndOf="@+id/tv_label_header_wins"
         app:layout_constraintTop_toTopOf="@+id/tv_label_header_wins" />
